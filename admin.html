@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard – HUNTERS CRICKET TOURNAMENT</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        /* ===== TOP HEADER WITH LOGOS ===== */
+        .main-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+            border-bottom: 2px solid gold;
+        }
+
+        .header-logo {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+        }
+
+        .header-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: gold;
+            text-align: center;
+            flex: 1;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width:768px) {
+            .header-title {
+                font-size: 1rem;
+            }
+
+            .header-logo {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Adjust layout because we added header */
+        .admin-layout {
+            display: flex;
+            min-height: calc(100vh - 90px);
+            position: relative;
+        }
+
+        .sidebar {
+            top: 90px;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NEW HEADER WITH LOGOS ===== -->
+    <div class="main-header">
+        <img src="logo.png" class="header-logo">
+        <div class="header-title">HUNTERS CRICKET TOURNAMENT 2026 – ADMIN PANEL</div>
+        <img src="group.png" class="header-logo">
+    </div>
+
+    <!-- Sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <span class="sidebar-logo-icon">🏏</span>
+            <div class="sidebar-title">HUNTERS<br />CRICKET</div>
+            <div class="sidebar-subtitle">TOURNAMENT 2026</div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-section-label">Overview</div>
+            <button class="nav-item active" onclick="showSection('overview')">
+                🏠 Dashboard
+            </button>
+            <button class="nav-item" onclick="showSection('bracket')">
+                📊 Bracket View
+            </button>
+            <button class="nav-item" onclick="showSection('live')">
+                🔴 Live Match
+            </button>
+
+            <div class="sidebar-section-label" style="margin-top:12px;">Rounds</div>
+            <button class="nav-item" onclick="showSection('round',1)">1️⃣ Round 1</button>
+            <button class="nav-item" onclick="showSection('round',2)">2️⃣ Round 2</button>
+            <button class="nav-item" onclick="showSection('round',3)">3️⃣ Round 3</button>
+            <button class="nav-item" onclick="showSection('round',4)">4️⃣ Round 4</button>
+            <button class="nav-item" onclick="showSection('round',5)">🏆 Semi Final</button>
+            <button class="nav-item" onclick="showSection('round',6)">🥇 Final</button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="participant.html" target="_blank" class="btn btn-outline btn-sm"
+                style="text-align:center;display:block;">
+                👥 Participant View
+            </a>
+            <button class="btn btn-danger btn-sm" onclick="totalReset()">🔄 Total Reset</button>
+            <button class="btn btn-outline btn-sm" onclick="adminLogout()">🚪 Logout</button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+
+        <header class="topbar">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <button class="hamburger" onclick="toggleSidebar()">☰</button>
+                <div class="topbar-title">Dashboard</div>
+            </div>
+            <div class="topbar-right">
+                <span style="font-size:0.8rem;color:var(--text-muted);">Admin</span>
+            </div>
+        </header>
+
+        <div class="content-area">
+            <!-- Your existing content remains same -->
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

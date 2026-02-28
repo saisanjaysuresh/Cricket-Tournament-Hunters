@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HUNTERS CRICKET TOURNAMENT – Admin Login</title>
+    <meta name="description" content="Admin login for Hunters Cricket Tournament 2026" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-page::after {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60vh;
+            background: linear-gradient(180deg, transparent, rgba(16, 185, 129, 0.04));
+            border-left: 1px solid rgba(16, 185, 129, 0.08);
+            border-right: 1px solid rgba(16, 185, 129, 0.08);
+            pointer-events: none;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(246, 201, 14, 0.10) 0%, transparent 70%);
+            bottom: -80px;
+            right: -80px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 440px;
+            animation: fadeIn 0.6s ease both;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 🔥 NEW HEADER WITH LOGOS */
+        .top-logo-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .side-logo {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .center-title {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .login-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.15;
+        }
+
+        .login-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        .year-tag {
+            display: inline-block;
+            padding: 2px 10px;
+            background: rgba(246, 201, 14, 0.1);
+            border: 1px solid rgba(246, 201, 14, 0.3);
+            border-radius: 20px;
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .side-logo {
+                width: 50px;
+                height: 50px;
+            }
+
+            .login-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <main class="login-page">
+        <div class="login-container">
+
+            <!-- 🔥 HEADER WITH LEFT & RIGHT LOGOS -->
+            <div class="login-logo">
+                <div class="top-logo-header">
+                    <img src="logo.png" class="side-logo" alt="Tournament Logo">
+
+                    <div class="center-title">
+                        <h1 class="login-title">
+                            HUNTERS<br />CRICKET<br />TOURNAMENT
+                        </h1>
+                        <p class="login-subtitle">Official Tournament Management Portal</p>
+                        <span class="year-tag">SEASON 2026</span>
+                    </div>
+
+                    <img src="group.png" class="side-logo" alt="Group Logo">
+                </div>
+            </div>
+
+            <!-- Login Card (UNCHANGED) -->
+            <div class="login-card">
+                <p class="login-card-title">🔐 Admin Access</p>
+
+                <form id="loginForm" onsubmit="doLogin(event)">
+                    <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <input type="text" id="username" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" id="password" class="form-control" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-gold btn-login">
+                        🚀 Sign In as Admin
+                    </button>
+                </form>
+
+                <div class="login-footer">
+                    Secure Admin Access Only
+                </div>
+            </div>
+
+            <a href="participant.html" class="participant-link">
+                👥 View as Participant →
+            </a>
+
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        function doLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (username === 'admin' && password === 'hunters@2026') {
+                localStorage.setItem('hct_admin', 'true');
+                window.location.href = 'admin.html';
+            } else {
+                alert('Invalid username or password');
+            }
+        }
+    </script>
+</body>
+
+</html>
